@@ -1,0 +1,27 @@
+services:
+  banner:
+    build: ./banner
+    container_name: mc-banner
+    restart: unless-stopped
+    environment:
+      SERVER_ADDRESS: ${SERVER_URL}
+      SERVER_NAME: ${SERVER_NAME}
+      ACCENT_HEX: ${EMBED_ACCENT_HEX}
+      ICON_FILE: ${BANNER_ICON_SRC}
+    volumes:
+      - ./banner/assets:/app/assets:ro
+    ports:
+      - "8080:8080"   # http://localhost:8080/banner.png
+
+  discord-refresher:
+    build: ./refresher
+    container_name: discord-refresher
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - banner
+    volumes:
+      - refresher_state:/state
+
+volumes:
+  refresher_state:
