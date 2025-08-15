@@ -4,10 +4,31 @@ services:
     container_name: mc-banner
     restart: unless-stopped
     environment:
-      SERVER_ADDRESS: ${SERVER_URL}
       SERVER_NAME: ${SERVER_NAME}
-      ACCENT_HEX: ${EMBED_ACCENT_HEX}
-      ICON_FILE: ${BANNER_ICON_SRC}
+      SERVER_URL: ${SERVER_URL}
+      SERVER_PORT: ${SERVER_PORT}
+
+      EMBED_TITLE: ${EMBED_TITLE}
+      ACCENT_HEX: ${ACCENT_HEX}
+
+      DISPLAY_PORT: ${DISPLAY_PORT}
+      DISPLAY_MOTD: ${DISPLAY_MOTD}
+      DISPLAY_PING: ${DISPLAY_PING}
+      DISPLAY_VERSION: ${DISPLAY_VERSION}
+      DISPLAY_PLAYERS: ${DISPLAY_PLAYERS}
+      DISPLAY_TIMESTAMP: ${DISPLAY_TIMESTAMP}
+
+      ICON_FILE: ${ICON_FILE}
+
+      BANNER_WIDTH: ${BANNER_WIDTH}
+      BANNER_HEIGHT: ${BANNER_HEIGHT}
+      BANNER_SCALE: ${BANNER_SCALE}
+
+      # Refresh Interval
+      INTERVAL: ${INTERVAL}
+
+      # State File - Do not change unless you know what you are doing!
+      STATE_FILE: ${STATE_FILE}
     volumes:
       - ./banner/assets:/app/assets:ro
     ports:
